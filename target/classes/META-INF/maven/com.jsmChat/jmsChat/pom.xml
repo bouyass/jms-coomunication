@@ -3,4 +3,15 @@
   <groupId>com.jsmChat</groupId>
   <artifactId>jmsChat</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <properties>
+  	<maven.compiler.source>1.8</maven.compiler.source>
+  	<maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+  <dependencies>
+  	<dependency>
+    	<groupId>org.apache.activemq</groupId>
+    	<artifactId>activemq-client</artifactId>
+    	<version>5.16.0</version>
+	</dependency>
+  </dependencies>
 </project>
