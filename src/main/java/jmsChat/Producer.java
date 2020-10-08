@@ -1,5 +1,7 @@
 package jmsChat;
 
+import java.util.Scanner;
+
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.DeliveryMode;
@@ -14,6 +16,10 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 public class Producer {
 	
 	public static void main(String[] args) throws JMSException {
+		
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Vers: ");
+		String code = scanner.nextLine();		
 		ConnectionFactory cf  = new ActiveMQConnectionFactory("tcp://localhost:61616");
 		Connection connection = cf.createConnection();
 		connection.start();
@@ -24,6 +30,7 @@ public class Producer {
 		messageProducer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
 		TextMessage textMessage = session.createTextMessage();
 		textMessage.setText("Hello i'm lyes, how are you doing ?");
+		textMessage.setStringProperty("code", code);
 		messageProducer.send(textMessage);
 		System.out.println("Envoi du message");
 		session.close();

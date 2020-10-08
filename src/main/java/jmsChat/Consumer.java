@@ -1,5 +1,7 @@
 package jmsChat;
 
+import java.util.Scanner;
+
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.Destination;
@@ -12,10 +14,18 @@ import javax.jms.TextMessage;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 
+
 public class Consumer {
 	
-	@SuppressWarnings("unused")
+	
+	@SuppressWarnings("resource")
 	public static void main(String[] args) throws JMSException {
+		
+		Scanner scanner = new Scanner(System.in);
+		
+		System.out.println("code: ");
+		
+		String code = scanner.nextLine();
 		
 		ConnectionFactory cf = new ActiveMQConnectionFactory("tcp://localhost:61616");
 		
@@ -27,7 +37,7 @@ public class Consumer {
 		
 		//Destination destination = session.createQueue("lyes.queue");
 		Destination destination = session.createTopic("rachid.topic");
-		MessageConsumer messageConsumer = session.createConsumer(destination);
+		MessageConsumer messageConsumer = session.createConsumer(destination,"code='"+code+"'");
 		 
 		messageConsumer.setMessageListener(new MessageListener() {
 
