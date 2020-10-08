@@ -25,8 +25,8 @@ public class Consumer {
 		
 		Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 		
-		Destination destination = session.createQueue("lyes.queue");
-		 
+		//Destination destination = session.createQueue("lyes.queue");
+		Destination destination = session.createTopic("rachid.topic");
 		MessageConsumer messageConsumer = session.createConsumer(destination);
 		 
 		messageConsumer.setMessageListener(new MessageListener() {
